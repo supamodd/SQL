@@ -1,1 +1,0 @@
---SQLQuery1-CREATE DATABASE.sql
