@@ -7,6 +7,10 @@
     <Platform Project="?" />
     <Build Project="false" />
   </Project>
+  <Project Path="DML/DML.ssmssqlproj" Type="4f2e2c19-372f-40d8-9fa7-9d2138c6997a">
+    <Platform Project="?" />
+    <Build Project="false" />
+  </Project>
   <Project Path="SQL/SQL.ssmssqlproj" Type="4f2e2c19-372f-40d8-9fa7-9d2138c6997a">
     <Platform Project="?" />
     <Build Project="false" />

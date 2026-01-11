@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
-<SqlWorkbenchSqlProject xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Name="DDL">
+<SqlWorkbenchSqlProject xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Name="DML">
   <Items>
     <LogicalFolder Name="Connections" Type="2" Sorted="true">
       <Items>
         <ConnectionNode Name="SUPAMODDPC\SQLEXPRESS:SUPAMODDPC\Администратор">
-          <Created>2025-12-29T09:13:58.4063275+03:00</Created>
+          <Created>2026-01-11T10:38:37.1406962+03:00</Created>
           <Type>SQL</Type>
           <Server>SUPAMODDPC\SQLEXPRESS</Server>
           <UserName />
           <Authentication>Windows Authentication</Authentication>
-          <InitialDB />
+          <InitialDB>SPU_411_DDL</InitialDB>
           <LoginTimeout>15</LoginTimeout>
           <TrustServerCertificate>True</TrustServerCertificate>
           <EncryptionOption>True</EncryptionOption>
@@ -21,47 +21,35 @@
     </LogicalFolder>
     <LogicalFolder Name="Queries" Type="0" Sorted="true">
       <Items>
-        <FileNode Name="SQLQuery0-CREATE DATABASE.sql">
-          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:SUPAMODDPC\SQLEXPRESS:True</AssociatedConnectionMoniker>
-          <AssociatedConnSrvName>SUPAMODDPC\SQLEXPRESS</AssociatedConnSrvName>
+        <FileNode Name="SQLQuery1-INSERT Directions.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
           <AssociatedConnUserName />
-          <FullPath>SQLQuery0-CREATE DATABASE.sql</FullPath>
+          <FullPath>SQLQuery1-INSERT Directions.sql</FullPath>
         </FileNode>
-        <FileNode Name="SQLQuery0-DROP DATABASE.sql">
+        <FileNode Name="SQLQuery1-INSERT Group.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:SUPAMODDPC\SQLEXPRESS:True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>SUPAMODDPC\SQLEXPRESS</AssociatedConnSrvName>
           <AssociatedConnUserName />
-          <FullPath>SQLQuery0-DROP DATABASE.sql</FullPath>
+          <FullPath>SQLQuery1-INSERT Group.sql</FullPath>
         </FileNode>
-        <FileNode Name="SQLQuery1-CREATE Students Branch.sql">
+        <FileNode Name="SQLQuery2-SELECT Students.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:SUPAMODDPC\SQLEXPRESS:True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>SUPAMODDPC\SQLEXPRESS</AssociatedConnSrvName>
           <AssociatedConnUserName />
-          <FullPath>SQLQuery1-CREATE Students Branch.sql</FullPath>
+          <FullPath>SQLQuery2-SELECT Students.sql</FullPath>
         </FileNode>
-        <FileNode Name="SQLQuery1-CREATE Teachers.sql">
+        <FileNode Name="SQLQuery3-SELECT COUNT Groups AND Students.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:SUPAMODDPC\SQLEXPRESS:True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>SUPAMODDPC\SQLEXPRESS</AssociatedConnSrvName>
           <AssociatedConnUserName />
-          <FullPath>SQLQuery1-CREATE Teachers.sql</FullPath>
+          <FullPath>SQLQuery3-SELECT COUNT Groups AND Students.sql</FullPath>
         </FileNode>
-        <FileNode Name="SQLQuery2-CREATE Disciplines.sql">
+        <FileNode Name="SQLQuery4-SELECT Teachers AND Disciplines.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:SUPAMODDPC\SQLEXPRESS:True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>SUPAMODDPC\SQLEXPRESS</AssociatedConnSrvName>
           <AssociatedConnUserName />
-          <FullPath>SQLQuery2-CREATE Disciplines.sql</FullPath>
-        </FileNode>
-        <FileNode Name="SQLQuery3-CREATE Schedule and Grades.sql">
-          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:SUPAMODDPC\SQLEXPRESS:True</AssociatedConnectionMoniker>
-          <AssociatedConnSrvName>SUPAMODDPC\SQLEXPRESS</AssociatedConnSrvName>
-          <AssociatedConnUserName />
-          <FullPath>SQLQuery3-CREATE Schedule and Grades.sql</FullPath>
-        </FileNode>
-        <FileNode Name="SQLQuery4-ALL IN ONE.sql">
-          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:SUPAMODDPC\SQLEXPRESS:True</AssociatedConnectionMoniker>
-          <AssociatedConnSrvName>SUPAMODDPC\SQLEXPRESS</AssociatedConnSrvName>
-          <AssociatedConnUserName />
-          <FullPath>SQLQuery4-ALL IN ONE.sql</FullPath>
+          <FullPath>SQLQuery4-SELECT Teachers AND Disciplines.sql</FullPath>
         </FileNode>
       </Items>
     </LogicalFolder>
