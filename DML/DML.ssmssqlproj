@@ -87,6 +87,30 @@
           <AssociatedConnUserName />
           <FullPath>SQLQuery5-SELECT Teachers WITHOUT Disciplines.sql</FullPath>
         </FileNode>
+        <FileNode Name="SQLQuery6-ADD Students in Group.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:SUPAMODDPC\SQLEXPRESS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>SUPAMODDPC\SQLEXPRESS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>SQLQuery6-ADD Students in Group.sql</FullPath>
+        </FileNode>
+        <FileNode Name="SQLQuery6-ALL Schedule for Group.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:SUPAMODDPC\SQLEXPRESS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>SUPAMODDPC\SQLEXPRESS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>SQLQuery6-ALL Schedule for Group.sql</FullPath>
+        </FileNode>
+        <FileNode Name="SQLQuery6-CHECK Create Studs.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:SUPAMODDPC\SQLEXPRESS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>SUPAMODDPC\SQLEXPRESS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>SQLQuery6-CHECK Create Studs.sql</FullPath>
+        </FileNode>
+        <FileNode Name="SQLQuery6-CREATE Group.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>SQLQuery6-CREATE Group.sql</FullPath>
+        </FileNode>
       </Items>
     </LogicalFolder>
     <LogicalFolder Name="Miscellaneous" Type="3" Sorted="true">
