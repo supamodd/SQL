@@ -39,6 +39,18 @@
           <AssociatedConnUserName />
           <FullPath>SQLQuery1-SELECT Schedule.sql</FullPath>
         </FileNode>
+        <FileNode Name="SQLQuery2-Discipline AND Schedules.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:SUPAMODDPC\SQLEXPRESS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>SUPAMODDPC\SQLEXPRESS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>SQLQuery2-Discipline AND Schedules.sql</FullPath>
+        </FileNode>
+        <FileNode Name="SQLQuery2-Full AND Empty Groups.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:SUPAMODDPC\SQLEXPRESS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>SUPAMODDPC\SQLEXPRESS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>SQLQuery2-Full AND Empty Groups.sql</FullPath>
+        </FileNode>
       </Items>
     </LogicalFolder>
     <LogicalFolder Name="Miscellaneous" Type="3" Sorted="true">
