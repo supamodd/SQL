@@ -12,6 +12,6 @@ FROM		Schedule
 JOIN		Groups			ON	[group]		=	group_id
 JOIN		Disciplines		ON	discipline	=	discipline_id
 JOIN		Teachers		ON	teacher		=	teacher_id
-WHERE		[group_name]	=	N'PV_319'
+WHERE		[group_name]	=	N'SPU 411'
 ORDER	BY	[date]
 ;
