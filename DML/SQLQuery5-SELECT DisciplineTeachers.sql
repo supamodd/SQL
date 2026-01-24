@@ -10,7 +10,7 @@ SELECT
 
 FROM Teachers
 LEFT JOIN TeachersDisciplinesRelation td
-    ON teacher_id = teacher_id          -- ? было teacher_id = teacher_id (ошибка!)
+    ON teacher_id = teacher_id
 
 GROUP BY
     teacher_id,

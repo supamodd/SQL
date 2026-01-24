@@ -21,6 +21,12 @@
     </LogicalFolder>
     <LogicalFolder Name="Queries" Type="0" Sorted="true">
       <Items>
+        <FileNode Name="SQLQuery1.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:SUPAMODDPC\SQLEXPRESS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>SUPAMODDPC\SQLEXPRESS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>SQLQuery1.sql</FullPath>
+        </FileNode>
         <FileNode Name="SQLQuery1-INSERT Directions.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:SUPAMODDPC\SQLEXPRESS:True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>SUPAMODDPC\SQLEXPRESS</AssociatedConnSrvName>
@@ -39,6 +45,12 @@
           <AssociatedConnUserName />
           <FullPath>SQLQuery2-SELECT Students.sql</FullPath>
         </FileNode>
+        <FileNode Name="SQLQuery3-JOIN Students.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>SQLQuery3-JOIN Students.sql</FullPath>
+        </FileNode>
         <FileNode Name="SQLQuery3-SELECT COUNT Groups AND Students.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:SUPAMODDPC\SQLEXPRESS:True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>SUPAMODDPC\SQLEXPRESS</AssociatedConnSrvName>
@@ -50,6 +62,12 @@
           <AssociatedConnSrvName>SUPAMODDPC\SQLEXPRESS</AssociatedConnSrvName>
           <AssociatedConnUserName />
           <FullPath>SQLQuery4-SELECT Teachers AND Disciplines.sql</FullPath>
+        </FileNode>
+        <FileNode Name="SQLQuery5-DELETE Schedule.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:SUPAMODDPC\SQLEXPRESS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>SUPAMODDPC\SQLEXPRESS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>SQLQuery5-DELETE Schedule.sql</FullPath>
         </FileNode>
         <FileNode Name="SQLQuery5-SELECT Direction AND Disciplines.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:SUPAMODDPC\SQLEXPRESS:True</AssociatedConnectionMoniker>
