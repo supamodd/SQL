@@ -7,7 +7,7 @@ DECLARE @discipline SMALLINT = (SELECT discipline_id FROM Disciplines WHERE disc
 DECLARE @teacher    INT     = (SELECT teacher_id   FROM Teachers    WHERE first_name LIKE N'Юыху');
 
 DECLARE @start_date DATE = '20241026';
-DECLARE @end_date   DATE = '20260117';
+DECLARE @end_date   DATE = '20260630';
 DECLARE @start_time TIME = '10:00:00';
 
 DECLARE @cur_date DATE = @start_date;

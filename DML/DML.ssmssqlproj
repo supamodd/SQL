@@ -46,8 +46,8 @@
           <FullPath>SQLQuery2-SELECT Students.sql</FullPath>
         </FileNode>
         <FileNode Name="SQLQuery3-JOIN Students.sql">
-          <AssociatedConnectionMoniker />
-          <AssociatedConnSrvName />
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:SUPAMODDPC\SQLEXPRESS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>SUPAMODDPC\SQLEXPRESS</AssociatedConnSrvName>
           <AssociatedConnUserName />
           <FullPath>SQLQuery3-JOIN Students.sql</FullPath>
         </FileNode>

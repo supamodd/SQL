@@ -3,9 +3,9 @@ USE SPU_411_Import;
 
 --INSERT Groups
 --		(group_id,	group_name,	direction)
---VALUES	(411,		N'SPU_411',	1);
+--VALUES	(411,		N'SPU 411',	1);
 
-DECLARE	@group				AS	INT		=(SELECT group_id			FROM Groups			WHERE group_name		=	N'SPU_411');
+DECLARE	@group				AS	INT		=(SELECT group_id			FROM Groups			WHERE group_name		=	N'SPU 411');
 DECLARE	@discipline			AS	SMALLINT=(SELECT discipline_id		FROM Disciplines	WHERE discipline_name LIKE	(N'Процедурное%C++'));
 DECLARE	@number_of_lessons	AS	TINYINT	=(SELECT number_of_lessons	FROM Disciplines	WHERE discipline_id		=	@discipline);
 DECLARE @lesson_number		AS	INT		=0;
