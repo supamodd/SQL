@@ -2,7 +2,6 @@
 USE SPU_411_Import;
 GO
 
-
 ALTER PROCEDURE sp_SelectSchedule
     @group_name     NVARCHAR(50),
     @discipline_name NVARCHAR(150) = N'%',
@@ -55,7 +54,6 @@ BEGIN
         [date] ASC,
         [time] ASC;
 
-    -- Отчёт
     DECLARE @cnt int = @@ROWCOUNT;
 
     IF @cnt = 0
@@ -63,4 +61,3 @@ BEGIN
     ELSE
         PRINT N'Найдено записей: ' + CAST(@cnt AS varchar(10)) + N' шт.';
 END
-GO

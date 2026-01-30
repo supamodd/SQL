@@ -34,9 +34,9 @@ INNER JOIN Disciplines   ON discipline_id  = discipline
 INNER JOIN Teachers      ON teacher_id     = teacher
 
 WHERE group_name = N'SPU 411'
-  AND [date] BETWEEN '20241026' AND '20260117'
-  -- AND d.discipline_name LIKE N'Процедурное%C++'
-  -- AND t.first_name LIKE N'Олег'
+  AND [date] BETWEEN '20241026' AND '20260509'
+  -- AND discipline_name LIKE N'Процедурное%C++'
+  -- AND first_name LIKE N'Олег'
 
 ORDER BY 
     [date] ASC,

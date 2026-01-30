@@ -2,11 +2,11 @@ CREATE OR ALTER PROCEDURE dbo.sp_InsertScheduleSemistacionar
 (
     @GroupName          nvarchar(50),
     @DisciplineName     nvarchar(150),
-    @TeacherFIO         nvarchar(150),               -- ОБЯЗАТЕЛЬНЫЙ параметр
+    @TeacherFIO         nvarchar(150),               
     @StartDate          date,
     @EndDate            date           = NULL,
     @WeeksCount         int            = NULL,
-    @DaysPerWeek        tinyint        = 3,          -- 2 или 3
+    @DaysPerWeek        tinyint        = 3,          
     @PairsPerDay        tinyint        = 3,
     @StartTime          time           = '09:00:00',
     @PairDurationMin    int            = 90,
@@ -27,9 +27,8 @@ BEGIN
         @CurrentTime    time,
         @DayName        nvarchar(20);
 
-    -- 1. Группа
     SELECT @GroupID = group_id 
-    FROM dbo.Groups 
+    FROM Groups 
     WHERE group_name = @GroupName;
 
     IF @GroupID IS NULL
@@ -38,9 +37,8 @@ BEGIN
         RETURN;
     END
 
-    -- 2. Дисциплина
     SELECT @DisciplineID = discipline_id 
-    FROM dbo.Disciplines 
+    FROM Disciplines 
     WHERE discipline_name LIKE '%' + @DisciplineName + '%';
 
     IF @DisciplineID IS NULL
@@ -57,7 +55,7 @@ BEGIN
     END
 
     SELECT TOP 1 @TeacherID = teacher_id
-    FROM dbo.Teachers
+    FROM Teachers
     WHERE 
         first_name  LIKE '%' + @TeacherFIO + '%'
         OR last_name LIKE '%' + @TeacherFIO + '%'
@@ -118,13 +116,14 @@ BEGIN
                 AND @DayName IN (N'понедельник', N'среда', N'четверг')
                 SET @IsStudyDay = 1;
 
-            -- Если нужно другие дни — добавь сюда, например:
-            -- IF @DayName IN (N'понедельник', N'вторник', N'пятница') SET @IsStudyDay = 1;
-
             IF @IsStudyDay = 0
             BEGIN
                 SET @SkippedCount += 1;
                 GOTO NextDay;
+
+            IF @DaysPerWeek = 1  -- новый код для "только суббота"
+    AND LOWER(DATENAME(WEEKDAY, @CurrentDate)) IN (N'суббота', N'saturday')
+    SET @IsStudyDay = 1;
             END
 
             SET @CurrentTime = @StartTime;
@@ -134,13 +133,13 @@ BEGIN
             BEGIN
                 IF NOT EXISTS (
                     SELECT 1 
-                    FROM dbo.Schedule 
+                    FROM Schedule 
                     WHERE [group] = @GroupID
                       AND [date]  = @CurrentDate
                       AND [time]  = @CurrentTime
                 )
                 BEGIN
-                    INSERT INTO dbo.Schedule
+                    INSERT INTO Schedule
                     (
                         [group], discipline, teacher,
                         [date], [time], spent
@@ -165,7 +164,7 @@ BEGIN
         COMMIT TRANSACTION;
 
         -- Отчёт
-        PRINT N'??????????????????????????????????????????????';
+        PRINT N'=============================================================';
         PRINT N'Добавлено пар:       ' + CAST(@InsertedCount AS varchar(10));
         IF @SkippedCount > 0
             PRINT N'Пропущено дней:     ' + CAST(@SkippedCount AS varchar(10));
@@ -174,7 +173,7 @@ BEGIN
         PRINT N'Группа:             ' + @GroupName;
         PRINT N'Дисциплина ID:      ' + CAST(@DisciplineID AS nvarchar(10));
         PRINT N'Преподаватель ID:   ' + CAST(@TeacherID AS nvarchar(10));
-        PRINT N'??????????????????????????????????????????????';
+        PRINT N'=============================================================';
     END TRY
     BEGIN CATCH
         IF @@TRANCOUNT > 0 ROLLBACK TRANSACTION;
