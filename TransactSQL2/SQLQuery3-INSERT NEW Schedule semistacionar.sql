@@ -47,7 +47,6 @@ BEGIN
         RETURN;
     END
 
-    -- 3. Преподаватель — обязательно
     IF @TeacherFIO IS NULL OR TRIM(@TeacherFIO) = ''
     BEGIN
         RAISERROR(N'Параметр @TeacherFIO обязателен и не может быть пустым.', 16, 1);
@@ -84,7 +83,6 @@ BEGIN
 
     PRINT N'Преподаватель найден ? ID ' + CAST(@TeacherID AS nvarchar(10));
 
-    -- 4. Определяем конечную дату
     IF @EndDate IS NOT NULL
         SET @EndDateCalc = @EndDate;
     ELSE IF @WeeksCount IS NOT NULL
@@ -95,7 +93,6 @@ BEGIN
         RETURN;
     END
 
-    -- 5. Вставка
     BEGIN TRY
         BEGIN TRANSACTION;
 
@@ -103,11 +100,10 @@ BEGIN
 
         WHILE @CurrentDate <= @EndDateCalc
         BEGIN
-            SET @DayName = LOWER(DATENAME(WEEKDAY, @CurrentDate));  -- 'понедельник', 'вторник' и т.д.
+            SET @DayName = LOWER(DATENAME(WEEKDAY, @CurrentDate)); 
 
             DECLARE @IsStudyDay bit = 0;
 
-            -- Надёжная проверка по названию дня (независимо от @@DATEFIRST)
             IF @DaysPerWeek = 2 
                 AND @DayName IN (N'понедельник', N'среда')
                 SET @IsStudyDay = 1;
@@ -121,7 +117,7 @@ BEGIN
                 SET @SkippedCount += 1;
                 GOTO NextDay;
 
-            IF @DaysPerWeek = 1  -- новый код для "только суббота"
+            IF @DaysPerWeek = 1 
     AND LOWER(DATENAME(WEEKDAY, @CurrentDate)) IN (N'суббота', N'saturday')
     SET @IsStudyDay = 1;
             END

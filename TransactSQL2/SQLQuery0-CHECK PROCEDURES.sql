@@ -16,11 +16,11 @@ EXEC sp_SelectSchedule
 EXEC dbo.sp_InsertScheduleSemistacionar
     @GroupName         = N'SPU 411',
     @DisciplineName    = N'Процедурное программирование на языке C++',
-    @TeacherFIO        = N'Олег',                    -- или N'Ковтун', если поиск не сработает
-    @StartDate         = '20250901',                 -- 1 сентября 2025
-    @EndDate           = '20260131',                 -- до 31 января 2026
-    @WeeksCount        = NULL,                       -- не нужен
-    @DaysPerWeek       = 1,                          -- измени на 1 после фикса процедуры
+    @TeacherFIO        = N'Олег',                    
+    @StartDate         = '20250901',                 
+    @EndDate           = '20260131',                 
+    @WeeksCount        = NULL,                       
+    @DaysPerWeek       = 1,                          
     @PairsPerDay       = 3,
     @StartTime         = '10:00:00',
     @PairDurationMin   = 95,
