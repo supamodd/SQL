@@ -3,7 +3,7 @@ SET DATEFIRST 1; --1 ÏÍ, 2 Âò...
 
 USE SPU_411_Import;
 GO
-ALTER FUNCTION GetNextDate(@group_name AS NVARCHAR(24))
+CREATE FUNCTION GetNextDay(@group_name AS NVARCHAR(24))
 RETURNS	TINYINT
 AS
 BEGIN

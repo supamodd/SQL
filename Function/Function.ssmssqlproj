@@ -39,11 +39,11 @@
           <AssociatedConnUserName />
           <FullPath>SQLQuery1-GetLastDate.sql</FullPath>
         </FileNode>
-        <FileNode Name="SQLQuery1-GetNextDate.sql">
+        <FileNode Name="SQLQuery1-GetNextDay.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:SUPAMODDPC\SQLEXPRESS:True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>SUPAMODDPC\SQLEXPRESS</AssociatedConnSrvName>
           <AssociatedConnUserName />
-          <FullPath>SQLQuery1-GetNextDate.sql</FullPath>
+          <FullPath>SQLQuery1-GetNextDay.sql</FullPath>
         </FileNode>
         <FileNode Name="SQLQuery1-GetStartDate.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:SUPAMODDPC\SQLEXPRESS:True</AssociatedConnectionMoniker>
