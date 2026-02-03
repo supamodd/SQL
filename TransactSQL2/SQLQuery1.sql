@@ -1,4 +1,144 @@
 USE SPU_411_Import;
 GO
 
-DROP PROCEDURE sp_SelectSchedule
+CREATE OR ALTER PROCEDURE dbo.sp_InsertScheduleSemistacionar
+(
+    @GroupName nvarchar(50),
+    @DisciplineName nvarchar(150),
+    @TeacherFIO nvarchar(150),
+    @StartDate date,
+    @EndDate date = NULL,
+    @WeeksCount int = NULL,
+    @DaysPerWeek tinyint = 3,
+    @PairsPerDay tinyint = 3,
+    @StartTime time = '09:00:00',
+    @PairDurationMin int = 90,
+    @BreakBetweenPairs int = 10
+)
+AS
+BEGIN
+    SET NOCOUNT ON;
+    DECLARE
+        @GroupID int = NULL,
+        @DisciplineID smallint = NULL,
+        @TeacherID int = NULL,
+        @CurrentDate date,
+        @EndDateCalc date,
+        @InsertedCount int = 0,
+        @SkippedCount int = 0,
+        @CurrentTime time,
+        @DayName nvarchar(20);
+    SELECT @GroupID = group_id
+    FROM Groups
+    WHERE group_name = @GroupName;
+    IF @GroupID IS NULL
+    BEGIN
+        RAISERROR(N'Группа "%s" не найдена.', 16, 1, @GroupName);
+        RETURN;
+    END
+    SELECT @DisciplineID = discipline_id
+    FROM Disciplines
+    WHERE discipline_name LIKE '%' + @DisciplineName + '%';
+    IF @DisciplineID IS NULL
+    BEGIN
+        RAISERROR(N'Дисциплина "%s" не найдена (по LIKE).', 16, 1, @DisciplineName);
+        RETURN;
+    END
+    IF @TeacherFIO IS NULL OR TRIM(@TeacherFIO) = ''
+    BEGIN
+        RAISERROR(N'Параметр @TeacherFIO обязателен и не может быть пустым.', 16, 1);
+        RETURN;
+    END
+    SELECT TOP 1 @TeacherID = teacher_id
+    FROM Teachers
+    WHERE
+        first_name LIKE '%' + @TeacherFIO + '%'
+        OR last_name LIKE '%' + @TeacherFIO + '%'
+        OR (first_name + N' ' + ISNULL(last_name, '')) LIKE '%' + @TeacherFIO + '%'
+        OR (last_name + N' ' + ISNULL(first_name, '')) LIKE '%' + @TeacherFIO + '%'
+    ORDER BY LEN(first_name + last_name) ASC;
+    IF @TeacherID IS NULL
+    BEGIN
+        PRINT N'Преподаватель по запросу "' + @TeacherFIO + N'" не найден.';
+        PRINT N'Похожие записи (для справки):';
+       
+        SELECT TOP 10
+            teacher_id,
+            first_name,
+            last_name,
+            first_name + N' ' + ISNULL(last_name, N'') AS Полное_имя
+        FROM dbo.Teachers
+        WHERE first_name LIKE '%' + @TeacherFIO + '%'
+           OR last_name LIKE '%' + @TeacherFIO + '%'
+        ORDER BY first_name, last_name;
+        RAISERROR(N'Преподаватель не найден. Выберите из списка выше.', 16, 1);
+        RETURN;
+    END
+    PRINT N'Преподаватель найден ? ID ' + CAST(@TeacherID AS nvarchar(10));
+    IF @EndDate IS NOT NULL
+        SET @EndDateCalc = @EndDate;
+    ELSE IF @WeeksCount IS NULL
+        BEGIN
+            RAISERROR(N'Укажите либо @EndDate, либо @WeeksCount.', 16, 1);
+            RETURN;
+        END
+    ELSE
+        SET @EndDateCalc = DATEADD(WEEK, @WeeksCount, @StartDate);
+    BEGIN TRY
+        BEGIN TRANSACTION;
+        -- Используем GetStartDate для начальной даты
+        SET @CurrentDate = dbo.GetStartDate(@GroupName);
+        IF @CurrentDate < @StartDate
+            SET @CurrentDate = @StartDate;
+        WHILE @CurrentDate <= @EndDateCalc
+        BEGIN
+            -- Проверка на учебный день и праздник уже в GetNextDate, так что здесь только вставка
+            SET @CurrentTime = @StartTime;
+            DECLARE @p tinyint = 1;
+            WHILE @p <= @PairsPerDay
+            BEGIN
+                IF NOT EXISTS (
+                    SELECT 1
+                    FROM Schedule
+                    WHERE [group] = @GroupID
+                      AND [date] = @CurrentDate
+                      AND [time] = @CurrentTime
+                )
+                BEGIN
+                    INSERT INTO Schedule
+                    (
+                        [group], discipline, teacher,
+                        [date], [time], spent
+                    )
+                    VALUES
+                    (
+                        @GroupID, @DisciplineID, @TeacherID,
+                        @CurrentDate, @CurrentTime, 0
+                    );
+                    SET @InsertedCount += 1;
+                END
+                SET @CurrentTime = DATEADD(MINUTE, @PairDurationMin + @BreakBetweenPairs, @CurrentTime);
+                SET @p += 1;
+            END
+            -- Переход к следующей дате с помощью GetNextDate (учитывает праздники)
+            SET @CurrentDate = dbo.GetNextDate(@GroupName);
+        END
+        COMMIT TRANSACTION;
+        -- Отчёт
+        PRINT N'=============================================================';
+        PRINT N'Добавлено пар: ' + CAST(@InsertedCount AS varchar(10));
+        IF @SkippedCount > 0
+            PRINT N'Пропущено дней: ' + CAST(@SkippedCount AS varchar(10));
+        PRINT N'Период: ' + CONVERT(nvarchar(10), @StartDate, 104)
+                   + N' – ' + CONVERT(nvarchar(10), @EndDateCalc, 104);
+        PRINT N'Группа: ' + @GroupName;
+        PRINT N'Дисциплина ID: ' + CAST(@DisciplineID AS nvarchar(10));
+        PRINT N'Преподаватель ID: ' + CAST(@TeacherID AS nvarchar(10));
+        PRINT N'=============================================================';
+    END TRY
+    BEGIN CATCH
+        IF @@TRANCOUNT > 0 ROLLBACK TRANSACTION;
+        THROW;
+    END CATCH
+END
+GO

@@ -3,7 +3,7 @@
 USE SPU_411_Import;
 GO
 
-CREATE FUNCTION GetLastDate (@group_name	AS	NVARCHAR(24))
+ALTER FUNCTION GetLastDate (@group_name	AS	NVARCHAR(24))
 RETURNS DATE
 AS
 BEGIN
