@@ -33,12 +33,9 @@ BEGIN
         IF EXISTS (
             SELECT 1 FROM dbo.Holidays h
             WHERE h.month = @month AND h.day = @day
-            -- Для duration >1: простая проверка, предполагая, что каникулы фиксированы по дате
         )
             SET @is_holiday = 1;
 
-        -- Расширение для multi-day (например, новогодние: с 1 по 8 января)
-        -- Добавьте вручную для известных, или цикл по duration, но поскольку duration в таблице, можно
         DECLARE @h_id TINYINT, @h_month TINYINT, @h_day TINYINT, @duration TINYINT;
         DECLARE holiday_cursor CURSOR FOR
             SELECT holiday_id, month, day, duration FROM dbo.Holidays WHERE duration > 1;

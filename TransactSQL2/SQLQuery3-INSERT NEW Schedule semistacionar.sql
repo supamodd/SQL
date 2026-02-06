@@ -87,13 +87,13 @@ BEGIN
         SET @EndDateCalc = DATEADD(WEEK, @WeeksCount, @StartDate);
     BEGIN TRY
         BEGIN TRANSACTION;
-        -- Вызов GetStartDate для начальной даты
+                                                                 -- Вызов GetStartDate для начальной даты
         SET @CurrentDate = dbo.GetStartDate(@GroupName);
         IF @CurrentDate < @StartDate
             SET @CurrentDate = @StartDate;
         WHILE @CurrentDate <= @EndDateCalc
         BEGIN
-            -- Проверка на праздник через таблицу Holidays
+                                                                -- Проверка на праздник через таблицу Holidays
             DECLARE @is_holiday BIT = 0;
             DECLARE @month TINYINT = MONTH(@CurrentDate);
             DECLARE @day TINYINT = DAY(@CurrentDate);
@@ -103,7 +103,7 @@ BEGIN
             )
                 SET @is_holiday = 1;
 
-            -- Для каникул с duration >1 (проверка диапазона)
+                                                                 -- Для каникул (проверка диапазона)
             DECLARE @h_id TINYINT, @h_month TINYINT, @h_day TINYINT, @duration TINYINT;
             DECLARE holiday_cursor CURSOR FOR
                 SELECT holiday_id, month, day, duration FROM dbo.Holidays WHERE duration > 1;
@@ -120,12 +120,12 @@ BEGIN
             CLOSE holiday_cursor;
             DEALLOCATE holiday_cursor;
 
-            -- Вызов GetNextDay для проверки учебного дня (если нужно, иначе пропустить день)
+                                                     -- Вызов GetNextDay для проверки учебного дня
             DECLARE @next_day TINYINT = dbo.GetNextDay(@GroupName);
             IF DATEPART(WEEKDAY, @CurrentDate) <> @next_day OR @is_holiday = 1
             BEGIN
                 SET @SkippedCount += 1;
-                -- Вызов GetNextDate для перехода к следующей дате
+                                                    -- Вызов GetNextDate для перехода к следующей дате
                 SET @CurrentDate = dbo.GetNextDate(@GroupName);
                 CONTINUE;
             END
@@ -158,7 +158,7 @@ BEGIN
                 SET @CurrentTime = DATEADD(MINUTE, @PairDurationMin + @BreakBetweenPairs, @CurrentTime);
                 SET @p += 1;
             END
-            -- Вызов GetNextDate для следующей итерации
+                                                            -- Вызов GetNextDate для следующей итерации
             SET @CurrentDate = dbo.GetNextDate(@GroupName);
         END
         COMMIT TRANSACTION;
