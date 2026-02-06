@@ -25,7 +25,7 @@ BEGIN
         DECLARE @weekday TINYINT = DATEPART(WEEKDAY, @current_date);
         DECLARE @is_holiday BIT = 0;
 
-        -- Проверка на праздник/каникулы
+                                                                        -- Проверка на праздник/каникулы
         DECLARE @year INT = YEAR(@current_date);
         DECLARE @month TINYINT = MONTH(@current_date);
         DECLARE @day TINYINT = DAY(@current_date);
