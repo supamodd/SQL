@@ -33,7 +33,7 @@ BEGIN
         )                                         AS [Преподаватель],
         
         CASE spent
-            WHEN 1 THEN N'? Проведено'
+            WHEN 1 THEN N'+ Проведено'
             WHEN 0 THEN N'– Запланировано'
             ELSE        N'?'
         END                                       AS [Статус]

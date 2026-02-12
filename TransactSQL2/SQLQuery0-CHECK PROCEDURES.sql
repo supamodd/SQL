@@ -20,16 +20,25 @@
 --    @PairDurationMin = 95,
 --    @BreakBetweenPairs = 10;
 
--- Тестовый вызов процедуры для проверки группы PV_319 (3 дня в неделю: Вт, Чт, Сб с 18:30)
-EXEC dbo.sp_InsertScheduleSemistacionar
-    @GroupName = N'SPU 411',
-    @DisciplineName = N'Процедурное программирование на языке C++',  -- или любая другая дисциплина
-    @TeacherFIO = N'Олег',
-    @StartDate = '20250901',
-    @EndDate = NULL,
-    @WeeksCount = 20,
-    @DaysPerWeek = 3,  -- 3 дня в неделю
-    @PairsPerDay = 1,  -- Одна пара (с 18:30 до 21:30, предположим длительность 180 мин без перерыва)
-    @StartTime = '18:30:00',
-    @PairDurationMin = 180,
-    @BreakBetweenPairs = 0;
+--EXEC dbo.sp_InsertScheduleSemistacionar
+--    @GroupName = N'SPU 411',
+--    @DisciplineName = N'Процедурное программирование на языке C++',  -- или любая другая дисциплина
+--    @TeacherFIO = N'Олег',
+--    @StartDate = '20250901',
+--    @EndDate = NULL,
+--    @WeeksCount = 20,
+--    @DaysPerWeek = 3,  -- 3 дня в неделю
+--    @PairsPerDay = 3, 
+--    @StartTime = '18:30:00',
+--    @PairDurationMin = 180,
+--    @BreakBetweenPairs = 0;
+
+--SQLQuery0-CHECK PROCEDURES.sql
+USE SPU_411_Import;
+SET LANGUAGE N'Russian';
+
+
+EXEC sp_SelectSchedule N'SPU_411', N'Процедурное%C++';
+EXEC sp_InsertScheduleSemistacionar N'SPU 411',2,N'Ковтун';
+
+--EXEC sp_SelectScheduleFull;
