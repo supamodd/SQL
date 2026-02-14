@@ -41,4 +41,4 @@ SET LANGUAGE N'Russian';
 EXEC sp_SelectSchedule N'SPU_411', N'Процедурное%C++';
 EXEC sp_InsertScheduleSemistacionar N'SPU 411',2,N'Ковтун';
 
---EXEC sp_SelectScheduleFull;
+EXEC sp_SelectScheduleFull;
